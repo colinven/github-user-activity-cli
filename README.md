@@ -1,0 +1,1 @@
+# A Simple Node.js CLI Tool for Fetching User Activity Data from GitHub API
