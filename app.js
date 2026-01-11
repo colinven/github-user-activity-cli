@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+import dotenv from "dotenv";
+dotenv.config();
+const token = process.env.GITHUB_TOKEN;
+
+
 function extractData(array) {
    const extracted = array.map(event => ({
     eventType: event.type,
@@ -66,12 +71,21 @@ function constructMessages(array) {
 };
 
 function printMessages(formattedArray){
+    if (formattedArray.length === 0){
+        console.log('No recent activity.');
+        return;
+    }
     formattedArray.forEach(message => console.log(`${message}\n`));
 }
 
 async function fetchUserData(username) {
     try {
-        const response = await fetch(`https://api.github.com/users/${username}/events`);
+        const response = await fetch(`https://api.github.com/users/${username}/events`, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "User-Agent": "node.js"
+            }
+        });
         
         if (!response.ok){
             throw new Error(`HTTP error. Status: ${response.status}`);
@@ -89,8 +103,8 @@ async function fetchUserData(username) {
 };
 
 async function run() {
-    const username = process.argv[2];
-    const events = await fetchUserData(username);
+    const arg = process.argv[2];
+    const events = await fetchUserData(arg);
     const messagesArray = constructMessages(events);
     printMessages(messagesArray);
 };

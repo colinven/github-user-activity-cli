@@ -2,6 +2,7 @@
   "name": "github-user-activity-cli",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "app.js",
   "bin" : {
     "github-activity" : "./app.js"
