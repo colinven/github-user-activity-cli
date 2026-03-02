@@ -65,14 +65,14 @@ GITHUB_TOKEN=your_personal_access_token_here
 ### Run directly with Node
 
 ```bash
-node app.js 
+node app.js <username>
 ```
 
 ### Or install globally and use the `github-activity` command
 
 ```bash
 npm install -g .
-github-activity 
+github-activity <username>
 ```
 
 **Example:**
@@ -101,18 +101,6 @@ No recent activity.
 
 ---
 
-## Project Structure
-
-```
-github-user-activity-cli/
-├── app.js            # All CLI logic (fetch, parse, format, print)
-├── .env.example      # Template for environment variables
-├── .gitignore
-├── package.json
-└── README.md
-```
-
----
 
 ## How It Works
 
@@ -177,9 +165,3 @@ Node's built-in `fetch` is used for all HTTP requests — no additional HTTP lib
 ## Author
 
 **Colin Venancio** — [github.com/colinven](https://github.com/colinven)
-
----
-
-## License
-
-ISC
